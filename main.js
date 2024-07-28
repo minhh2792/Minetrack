@@ -3,8 +3,8 @@ const ServerRegistration = require('./lib/servers')
 
 const logger = require('./lib/logger')
 
-const config = require('./config')
-const servers = require('./servers')
+const config = require('./data/config')
+const servers = require('./data/servers')
 
 const app = new App()
 
