@@ -2,7 +2,7 @@ version: '3'
 
 services:
   minetrack:
-    image: minhh2792/minetrack
+    image: augustinominh/minetrack
     restart: always
     volumes:
       - /opt/minevn/mc-tracker/minetrack/data:./data
