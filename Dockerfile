@@ -21,12 +21,6 @@ COPY . .
 RUN npm install --build-from-source \
  && npm run build
 
-# run as non root
-RUN addgroup --gid 10043 --system minetrack \
- && adduser  --uid 10042 --system --ingroup minetrack --no-create-home --gecos "" minetrack \
- && chown -R minetrack:minetrack /usr/src/minetrack
-USER minetrack
-
 EXPOSE 8080
 
 ENTRYPOINT ["/sbin/tini", "--", "node", "main.js"]
