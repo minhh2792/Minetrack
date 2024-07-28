@@ -5,6 +5,8 @@ services:
     image: augustinominh/minetrack
     restart: always
     volumes:
-      - /opt/minevn/mc-tracker/minetrack/data:./data
+      - /opt/minevn/mc-tracker/minetrack/data:/usr/src/minetrack/data
+    ports:
+      - "8080:8080"
     networks:
       - minevn-web
