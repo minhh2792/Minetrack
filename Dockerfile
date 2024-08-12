@@ -18,7 +18,7 @@ WORKDIR /usr/src/minetrack
 COPY . .
 
 # build minetrack
-RUN npm install --build-from-source \
+RUN npm install\
  && npm run build
 
 EXPOSE 8080
