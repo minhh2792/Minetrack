@@ -1,3 +1,5 @@
+import { comparePinnedServerFirst } from './sort-priority.mjs'
+
 const SORT_OPTIONS = [
   {
     getName: () => 'Players',
@@ -149,6 +151,12 @@ export class SortController {
     const sortOption = SORT_OPTIONS[this._sortOptionIndex]
 
     const sortedServers = this._app.serverRegistry.getServerRegistrations().sort((a, b) => {
+      const pinnedSort = comparePinnedServerFirst(a, b)
+
+      if (pinnedSort !== 0) {
+        return pinnedSort
+      }
+
       if (a.isFavorite && !b.isFavorite) {
         return -1
       } else if (b.isFavorite && !a.isFavorite) {

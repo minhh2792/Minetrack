@@ -1,3 +1,5 @@
+import { comparePinnedServerNameFirst } from './sort-priority.mjs'
+
 export class SocketManager {
   constructor (app) {
     this._app = app
@@ -106,7 +108,15 @@ export class SocketManager {
 
           this._app.serverRegistry.getServerRegistrations()
             .map(serverRegistration => serverRegistration.data.name)
-            .sort()
+            .sort((nameA, nameB) => {
+              const pinnedSort = comparePinnedServerNameFirst(nameA, nameB)
+
+              if (pinnedSort !== 0) {
+                return pinnedSort
+              }
+
+              return nameA.localeCompare(nameB)
+            })
             .forEach(serverName => {
               const serverRegistration = this._app.serverRegistry.getServerRegistration(serverName)
 
